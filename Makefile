@@ -1,3 +1,4 @@
+# Test
 # This is a template `Makefile` file for snaps
 # This file is managed by bootstack-charms-spec and should not be modified
 # within individual snap repos. https://launchpad.net/bootstack-charms-spec
