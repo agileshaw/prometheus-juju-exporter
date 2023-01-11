@@ -1,0 +1,33 @@
+name: Functional tests
+on:
+  pull_request_review:
+    types: [ submitted ]
+jobs:
+  functest:
+    name: Functional tests
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.review.state == 'approved'
+      || github.event.review.body == 'recheck'
+      || github.event.review.body == 'recheck-full'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      - name: Install tox
+        run: pip install "tox < 4" #tox has breaking changes in major version 4
+      - uses: snapcore/action-build@v1
+        id: snapcraft
+      - name: Configure juju
+        run: |
+          newgrp lxd
+          sudo adduser $USER lxd
+          lxd init --auto
+          sudo snap install juju --classic
+          juju bootstrap localhost overlord
+      - name: Run functional tests
+        run: TEST_SNAP=${{ steps.snapcraft.outputs.snap }} tox -e func
