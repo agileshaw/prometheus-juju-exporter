@@ -1,0 +1,25 @@
+name: prometheus-juju-exporter
+base: bare
+build-base: ubuntu:22.04
+version: "0.1"
+summary: collects and exports juju machine status metrics
+description: |
+  Collects juju machine status metrics periodically.
+  Provides a prometheus exporter interface exposing the collected metrics.
+license: Apache-2.0
+
+cmd: [/bin/python3, -m, prometheus_juju_exporter.cli]
+env:
+  - PROMETHEUSJUJUEXPORTERDIR: /var/lib/prometheus-juju-exporter
+
+platforms:
+  amd64:
+
+parts:
+  prometheus-juju-exporter:
+    plugin: python
+    source: .
+    python-requirements: [./requirements.txt]
+    python-packages:
+      - .
+    stage-packages: [python3-venv, git]
