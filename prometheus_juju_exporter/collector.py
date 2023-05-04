@@ -76,7 +76,7 @@ class Collector:
                 raise RuntimeError("Unable to connect to any of the Juju controllers.")
 
     async def _get_machines_in_model(self, uuid: str) -> Dict[Any, Any]:
-        """Get a list of all machines in model with their stats.
+        """Get a list of all machines in the model with their stats.
 
         :return: status information for all machines in the model
         """
@@ -85,7 +85,7 @@ class Collector:
             status = await model.get_status()
             await model.disconnect()
         except Exception as err:  # pylint: disable=W0703
-            self.logger.error("Failed to connect to the model '%s': %s ", uuid, err)
+            self.logger.error("Failed connecting to model '%s': %s ", uuid, err)
             return {}
 
         return status["machines"]
