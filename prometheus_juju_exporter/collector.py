@@ -85,7 +85,7 @@ class Collector:
             status = await model.get_status()
             await model.disconnect()
         except Exception as err:  # pylint: disable=W0703
-            self.logger.error("Failed to connect to the model '%s': %s ", uuid, err)
+            self.logger.error("Failed connecting to model '%s': %s ", uuid, err)
             return {}
 
         return status["machines"]
