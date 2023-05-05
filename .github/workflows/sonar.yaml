@@ -7,7 +7,7 @@ on:
 
 jobs:
   sonarcloud:
-    uses: agileshaw/bootstack-actions/.github/workflows/sonar.yaml@fix-sonar
+    uses: canonical/bootstack-actions/.github/workflows/sonar.yaml@main
     secrets: inherit
     if: github.event.workflow_run.conclusion == 'success'
     with:

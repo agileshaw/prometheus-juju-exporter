@@ -14,7 +14,7 @@ on:
 
 jobs:
   pr:
-    uses: agileshaw/bootstack-actions/.github/workflows/pull-request.yaml@remove-approval-trigger
+    uses: agileshaw/bootstack-actions/.github/workflows/pull-request.yaml@sonar-update
     secrets: inherit
     with:
       python-version-unit: "['3.8', '3.10']"
