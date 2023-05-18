@@ -19,3 +19,5 @@ jobs:
       tox-version: "<4"
       snapcraft: true
       commands: "['make functional']"
+      track: fromJSON('["latest", github.ref_name]')[contains(fromJSON('["main", "master"]'), github.ref_name)]
+      risk-level: edge
