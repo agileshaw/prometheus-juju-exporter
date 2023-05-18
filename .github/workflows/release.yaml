@@ -17,3 +17,4 @@ jobs:
       tox-version: "<4"
       snapcraft: true
       commands: "['make functional']"
+      channel: 2.8/edge
