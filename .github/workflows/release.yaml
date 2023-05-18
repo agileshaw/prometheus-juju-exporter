@@ -1,0 +1,19 @@
+on:
+  push:
+    branches:
+      - '[0-9].[0-9]+'
+      - main
+      - master
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    uses: agileshaw/bootstack-actions/.github/workflows/snap-release.yaml@snap-build-release
+    secrets: inherit
+    with:
+      python-version-unit: "['3.8', '3.10']"
+      python-version-func: "3.10"
+      tox-version: "<4"
+      snapcraft: true
+      commands: "['make functional']"
