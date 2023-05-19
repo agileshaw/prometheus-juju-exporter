@@ -18,6 +18,5 @@ jobs:
       tox-version: "<4"
       snapcraft: true
       commands: "['make functional']"
-      # Select latest track for the default branch, otherwise use versioned branch name as the track name
-      track: ${{ contains(fromJSON('["main", "master"]'), github.ref_name) && 'latest' || github.ref_name }}
-      risk-level: edge
+      track: "2.6,2.7"
+      risk-level: "edge,beta"
