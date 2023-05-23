@@ -18,5 +18,7 @@ jobs:
       tox-version: "<4"
       snapcraft: true
       commands: "['make functional']"
-      track: "2.6,2.7"
-      risk-level: "edge,beta"
+      # Channel should be one or a (comma-separated) list of <track>/<risk-level>
+      # We use the "latest" track for the default branch, otherwise use versioned branch name as the track name
+      # The risk level we want to release to is "edge"
+      channel: ${{ contains(fromJSON('["main", "master"]'), github.ref_name) && 'latest' || github.ref_name }}/edge
