@@ -10,7 +10,7 @@ on:
 
 jobs:
   publish:
-    uses: agileshaw/bootstack-actions/.github/workflows/snap-release.yaml@snap-build-release
+    uses: agileshaw/bootstack-actions/.github/workflows/snap-release.yaml@fix-snap-versioning
     secrets: inherit
     with:
       python-version-unit: "['3.8', '3.10']"
